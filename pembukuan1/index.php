@@ -1,4 +1,9 @@
+<?php
 
+    $koneksi = new mysqli("localhost","root","","pemukuan");
+
+
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
@@ -44,21 +49,12 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                     </li>
 
                     <li>
-                        <a  href="page/kas_masuk/masuk.php"><i class="glyphicon glyphicon-arrow-down"></i> Uang Masuk</a>
+                        <a  href="index.php?page=masuk"><i class="glyphicon glyphicon-arrow-down"></i> Uang Masuk</a>
                     </li>
 
                     <li>
-                        <a  href="page/kas_keluar/keluar.php"><i class="glyphicon glyphicon-arrow-up"></i> Pengeluaran</a>
+                        <a  href="index.php?page=keluar"><i class="glyphicon glyphicon-arrow-up"></i> Pengeluaran</a>
                     </li>
-
-                    <li>
-                        <a  href="?page= rekap"><i class="glyphicon glyphicon-book"></i> Rekaptulasi</a>
-                    </li>
-
-                    <li>
-                        <a  href="?page= user"><i class="glyphicon glyphicon-user"></i> Management User</a>
-                    </li>
-
                       </ul>
                
             </div>
@@ -69,6 +65,49 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
+
+
+                    <?php
+
+                        $page = null;
+                        if (isset($_GET['page'])) {
+                            $page = $_GET['page'];
+                        }
+
+                        $aksi = null;
+                        if (isset($_GET['aksi'])) {
+                            $aksi = $_GET['aksi'];
+                        }
+
+                        switch ($page) {
+                            case 'masuk':
+                                include "page/kas_masuk/masuk.php";
+                                break;
+                            case 'keluar':
+                                include "page/kas_keluar/keluar.php";
+                                break; 
+                            default:
+                                # Code goes here...
+                                break;
+                        }
+
+                        // if($page == "masuk"){
+                        // }elseif($page == "keluar"){
+                        //     if($aksi == ""){
+                        //         include "page/kas_keluar/keluar.php";
+                        //     }
+                        // }elseif($page == "rekap"){
+                        //     if($aksi == ""){
+                        //         include "page/kas_rekap/rekap.php";
+                        //     }
+                        // }elseif($page == "user"){
+                        //     if($aksi == ""){
+                        //         include "page/user/user.php";
+                        //     }
+                        // }
+
+
+                    ?>
 
                     </div>
                 </div>
