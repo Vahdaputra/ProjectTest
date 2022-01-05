@@ -1,18 +1,25 @@
+<?php
 
+$koneksi = new mysqli("localhost", "root", "", "pemukuan");
+
+
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Bootstrap Admin Template : Binary Admin</title>
-	<!-- BOOTSTRAP STYLES-->
+    <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
+    <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -23,102 +30,109 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Binary admin</a> 
+                <a class="navbar-brand" href="index.html">Binary admin</a>
             </div>
-  <div style="color: white;
+            <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
 font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
-        </nav>   
-           <!-- /. NAV TOP  -->
-                <nav class="navbar-default navbar-side" role="navigation">
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-				<li class="text-center">
-                    <img src="assets/img/find_user.png" class="user-image img-responsive"/>
-					</li>
-				
-					
+                    <li class="text-center">
+                        <img src="assets/img/find_user.png" class="user-image img-responsive" />
+                    </li>
+
+
                     <li>
-                        <a  href="index.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
+                        <a href="index.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
                     </li>
 
                     <li>
-                        <a  href="?page= masuk"><i class="glyphicon glyphicon-arrow-down"></i> Uang Masuk</a>
+                        <a href="index.php?page=masuk"><i class="glyphicon glyphicon-arrow-down"></i> Uang Masuk</a>
                     </li>
 
                     <li>
-                        <a  href="?page= keluar"><i class="glyphicon glyphicon-arrow-up"></i> Pengeluaran</a>
+                        <a href="index.php?page=keluar"><i class="glyphicon glyphicon-arrow-up"></i> Pengeluaran</a>
                     </li>
+                </ul>
 
-                    <li>
-                        <a  href="?page= rekap"><i class="glyphicon glyphicon-book"></i> Rekaptulasi</a>
-                    </li>
-
-                    <li>
-                        <a  href="?page= user"><i class="glyphicon glyphicon-user"></i> Management User</a>
-                    </li>
-
-                      </ul>
-               
             </div>
-            
-        </nav>  
+
+        </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
+        <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     
+
 
                         <?php
 
+                        $page = null;
+                        if (isset($_GET['page'])) {
                             $page = $_GET['page'];
-                            $aksi = $_GET['aksi'];
+                        }
 
-                            if($page == "masuk"){
-                                if($aksi == ""){
-                                    include "page/kas_masuk/masuk.php";
-                                }
-                            }elseif($page == "keluar"){
-                                if($aksi == ""){
-                                    include "page/kas_keluar/keluar.php";
-                                }
-                            }elseif($page == "rekap"){
-                                if($aksi == ""){
-                                    include "page/kas_rekap/rekap.php";
-                                }
-                            }elseif($page == "user"){
-                                if($aksi == ""){
-                                    include "page/user/user.php";
-                                }
-                            }
-                            
+                        $aksi = null;
+                        if (isset($_GET['aksi'])) {
+                            $aksi = $_GET['aksi'];
+                        }
+
+                        switch ($page) {
+                            case 'masuk':
+                                include "page/kas_masuk/masuk.php";
+                                break;
+                            case 'keluar':
+                                include "page/kas_keluar/keluar.php";
+                                break;
+                            default:
+                                # Code goes here...
+                                break;
+                        }
+
+                        // if($page == "masuk"){
+                        // }elseif($page == "keluar"){
+                        //     if($aksi == ""){
+                        //         include "page/kas_keluar/keluar.php";
+                        //     }
+                        // }elseif($page == "rekap"){
+                        //     if($aksi == ""){
+                        //         include "page/kas_rekap/rekap.php";
+                        //     }
+                        // }elseif($page == "user"){
+                        //     if($aksi == ""){
+                        //         include "page/user/user.php";
+                        //     }
+                        // }
+
 
                         ?>
 
-
                     </div>
                 </div>
-                 <!-- /. ROW  -->
-                 <hr />
-               
-    </div>
-             <!-- /. PAGE INNER  -->
+                <!-- /. ROW  -->
+                <hr />
+
             </div>
-         <!-- /. PAGE WRAPPER  -->
+            <!-- /. PAGE INNER  -->
         </div>
-     <!-- /. WRAPPER  -->
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
+    <!-- BOOTSTRAP SCRIPTS -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-      <!-- CUSTOM SCRIPTS -->
+    <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
-    
-   
+
+
 </body>
+
 </html>
