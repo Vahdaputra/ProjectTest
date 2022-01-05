@@ -198,7 +198,13 @@
                     $tgl = $_POST['tgl'];
                     $jml = $_POST['jml'];
 
-                    $sql = $koneksi->query("insert into pembukuan (kode,keterangan,tgl,jumlah,jenis,keluar)values('$kode','$ket','$tgl','$jml','masuk','0')");
+                    $sql = $koneksi->query("UPDATE pembukuan set
+                    keterangan = '$ket',
+                    tgl = '$tgl',
+                    jumlah = '$jml',
+                    jenis = 'masuk',
+                    keluar = '0' 
+                    where kode = $kode");
                     if ($sql) {
                 ?>
                         <script type="text/javascript">
