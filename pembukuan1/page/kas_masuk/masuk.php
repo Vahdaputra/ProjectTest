@@ -34,11 +34,12 @@
                                     <td><?php echo date('d F Y', strtotime($data['tgl'])); ?></td>
                                     <td class="test"><?php echo $data['keterangan']; ?></td>
                                     <td align="right"><?php echo number_format($data['jumlah']) . ",-"; ?></td>
+                            
                                     <td>
 
                                         <a id="edit_data" data-toggle="modal" data-target="#edit" data-id="<?php echo $data['kode'] ?>" data-ket="<?php echo $data['keterangan'] ?>" data-tgl="<?php echo $data['tgl']; ?>" data-jml="<?php echo $data['jumlah'] ?>" class="btn btn-info"><i class="fa fa-edit"></i>Edit</a>
 
-                                        <a class="btn btn-danger"><i class="fa fa-trash"></i>delete</a>
+                                        <a onclick="hapus(<?php echo $data['kode'] ?>)" class="btn btn-danger" ><i class="fa fa-trash"></i>delete</a>
 
                                     </td>
                                 </tr>
@@ -218,6 +219,17 @@
 
 
                 <!--Akir Halaman Ubah-->
+
+                <!-- Function Hapus --> 
+                <script>
+                function hapus($kode) {
+                    $querry = `DELETE FROM pembukuan WHERE kode=${kode}`;
+                    console.log($querry);
+                    return $querry;
+                    
+                   
+                }
+                </script>
 
             </div>
         </div>
