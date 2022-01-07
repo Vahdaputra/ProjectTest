@@ -88,6 +88,9 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                             case 'keluar':
                                 include "page/kas_keluar/keluar.php";
                                 break;
+                            case '':
+                                include "home.php";
+                                break;
                             default:
                                 # Code goes here...
                                 break;
